@@ -27,7 +27,7 @@ export const useSignup = () => {
       const uploadPath = `thumbnails/${res.user.uid}/${thumbnail.name}`;
 
       //uploading image by creating thumbnail folder with name of user setIsPending
-      const img = await projectStorage.ref(uploadPath).puth(thumbnail);
+      const img = await projectStorage.ref(uploadPath).put(thumbnail);
 
       const imgUrl = await img.ref.getDownloadURL(); //getting image url
 
