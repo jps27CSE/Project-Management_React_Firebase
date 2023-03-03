@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import Select from "react-select";
 import { useCollection } from "../../hooks/useCollection";
 import "./Create.css";
+import { timestamp } from "../../firebase/config";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 export default function Create() {
   const [name, setName] = useState("");
@@ -13,6 +15,7 @@ export default function Create() {
   const [formError, setFormError] = useState(null);
 
   const { documents } = useCollection("users");
+  const { user } = useAuthContext();
 
   useEffect(() => {
     if (documents) {
@@ -46,7 +49,31 @@ export default function Create() {
       return;
     }
 
-    console.log(name, details, dueDate, category.value, assignedUsers);
+    const createdBy = {
+      displayName: user.displayName,
+      photoURL: user.photoURL,
+      id: user.uid,
+    };
+
+    const assingedUsersList = assignedUsers.map((u) => {
+      return {
+        displayName: u.value.displayName,
+        photoURL: u.value.photoURL,
+        id: u.value.id,
+      };
+    });
+
+    const project = {
+      name,
+      details,
+      category,
+      dueDate: timestamp.fromDate(new Date(dueDate)),
+      comments: [],
+      createdBy,
+      assingedUsersList,
+    };
+
+    console.log(project);
   };
 
   return (
