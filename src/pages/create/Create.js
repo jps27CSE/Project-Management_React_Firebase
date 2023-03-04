@@ -59,7 +59,7 @@ export default function Create() {
       id: user.uid,
     };
 
-    const assingedUsersList = assignedUsers.map((u) => {
+    const assignedUsersList = assignedUsers.map((u) => {
       return {
         displayName: u.value.displayName,
         photoURL: u.value.photoURL,
@@ -74,7 +74,7 @@ export default function Create() {
       dueDate: timestamp.fromDate(new Date(dueDate)),
       comments: [],
       createdBy,
-      assingedUsersList,
+      assignedUsersList,
     };
 
     await addDocument(project);
