@@ -44,7 +44,7 @@ function App() {
               <Route
                 path="/project/:id"
                 element={user ? <Project /> : <Navigate to="/login" />}
-              />
+              /> 
             </Routes>
           </div>
           {user && <OnlineUsers />}
