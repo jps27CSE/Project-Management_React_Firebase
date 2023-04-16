@@ -43,13 +43,13 @@ export default function Dashboard() {
     <div>
       <h2 className="page-title">Dashboard</h2>
       {error && <p className="error">{error}</p>}
-      {documents && (
+      {/* {documents && (
         <ProjectFilter
           currentFilter={currentFilter}
           changeFilter={changeFilter}
         />
-      )}
-      {projects && <ProjectList projects={projects} />}
+      )} */}
+      {documents && <ProjectList projects={documents} />}
     </div>
   );
 }
